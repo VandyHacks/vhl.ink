@@ -4,3 +4,6 @@ account_id = "39a76d640a29996bffbd58c36a537c2b"
 workers_dev = true
 route = ""
 zone_id = ""
+kv_namespaces = [
+  { binding = "LINKS", id = "77612e844ef647009a28a1153fcd0a96", preview_id = "77612e844ef647009a28a1153fcd0a96" }
+]
