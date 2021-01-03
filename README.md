@@ -1,15 +1,7 @@
-# 👷 `worker-template` Hello World
+# vhl.ink
 
-A template for kick starting a Cloudflare worker project.
+## Usage
 
-[`index.js`](https://github.com/cloudflare/worker-template/blob/master/index.js) is the content of the Workers script.
+send POST request with form data `url` and `path` to redirect vhl.ink/path to url.
 
-#### Wrangler
-
-To generate using [wrangler](https://github.com/cloudflare/wrangler)
-
-```
-wrangler generate projectname https://github.com/cloudflare/worker-template
-```
-
-Further documentation for Wrangler can be found [here](https://developers.cloudflare.com/workers/tooling/wrangler).
+consume normally.
