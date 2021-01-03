@@ -1,0 +1,6 @@
+name = "vhlink"
+type = "javascript"
+account_id = "39a76d640a29996bffbd58c36a537c2b"
+workers_dev = true
+route = ""
+zone_id = ""

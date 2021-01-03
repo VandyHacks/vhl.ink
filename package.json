@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "vhlink",
+  "version": "1.0.0",
+  "description": "A template for kick starting a Cloudflare Workers project",
+  "main": "worker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aadi Bajpai <hello@aadibajpai.com>",
+  "license": "MIT"
+}
