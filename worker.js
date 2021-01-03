@@ -13,7 +13,7 @@ const html = `<!DOCTYPE html>
     use an actual path if you're trying to fetch something.
     send a POST request with form data "url" and "path" if you're trying to put something.
     
-    source: <a href="https://github.com/VandyHacks/vhlink">VandyHacks/vhlink</a>
+    source: <a href="https://github.com/VandyHacks/vhl.ink">VandyHacks/vhl.ink</a>
     </pre>
 </body>`
 
