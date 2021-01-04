@@ -2,6 +2,8 @@
 
 Custom link shortener service using Cloudflare Workers + KV store on your domain. The Workers free tier is quite generous and perfectly suited for this since KV is optimized for high reads and infrequent writes, which is our use case. 
 
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/VandyHacks/vhl.ink)
+
 This API is easily consumed programmatically, such as through shell functions or slack slash commands, making it trivial to shorten links on the fly.
 
 Additionally, it is possible to make a simple form to create short links right from a webpage if that is more to your liking. See this [example](https://developers.cloudflare.com/workers/examples/read-post) for more info on that.
@@ -32,6 +34,6 @@ this is the easy part, simply open the shortened link in your browser of choice!
 
 ## Deploying
 
-This repo is set to automatically deploy to Cloudflare Workers on push. You will only need to modify the account values in [`wrangler.toml`](wrangler.toml), and set the repo secrets `CF_API_TOKEN` and `SECRET_KEY` (this is the preshared header authentication key) used in the [workflow](.github/workflows/main.yml). 
+Automatically deploys to Cloudflare Workers on push using GitHub Actions. You will only need to modify the account and kv namespace values in [wrangler.toml](wrangler.toml), and set the repo secrets `CF_API_TOKEN` and `SECRET_KEY` (this is the preshared header authentication key) used in the [workflow](.github/workflows/main.yml). 
 
 Oh, and run the worker on the route you want your shortener service to be on of course.
