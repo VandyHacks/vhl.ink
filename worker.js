@@ -4,8 +4,6 @@ addEventListener('fetch', event => {
 	switch (request.method) {
 		case 'POST':
 			return event.respondWith(handlePOST(request));
-		case 'LIST':
-			return event.respondWith(handleLIST(request));
 		case 'DELETE':
 			return event.respondWith(handleDELETE(request));
 		default:
@@ -49,19 +47,6 @@ async function handlePOST(request) {
 }
 
 /**
- * Respond to LIST requests with a list of all registered shortlinks
- * @param {Request} request
- */
-async function handleLIST(request) {
-	const psk = request.headers.get('x-preshared-key');
-	if (psk !== SECRET_KEY)
-		return new Response('Sorry, bad key.', { status: 403 });
-
-	const { keys } = await LINKS.list();
-	return new Response(keys, { status: 200 });
-}
-
-/**
  * Respond to DELETE requests by deleting the shortlink
  * @param {Request} request
  */
@@ -78,19 +63,29 @@ async function handleDELETE(request) {
 }
 
 /**
- * Respond to GET requests with redirects
+ * Respond to GET requests with redirects.
+ *
+ * Authenticated GET requests without a path will return a list of all
+ * shortlinks registered with the service.
  * @param {Request} request
  */
 async function handleRequest(request) {
 	const url = new URL(request.url);
 	const path = url.pathname.split('/')[1];
-	if (!path)
+	if (!path) {
+		// Return list of available shortlinks if user supplies admin credentials.
+		const psk = request.headers.get('x-preshared-key');
+		if (psk === SECRET_KEY) {
+			const { keys } = await LINKS.list();
+			return new Response(keys, { status: 200 });
+		}
+
 		return new Response(html, {
 			headers: {
 				'content-type': 'text/html;charset=UTF-8',
 			},
 		});
-
+	}
 	const redirectURL = await LINKS.get(path);
 	if (redirectURL) return Response.redirect(redirectURL, 301);
 

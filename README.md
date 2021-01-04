@@ -48,14 +48,15 @@ Will delete the shortlink available at https://vhl.ink/gh
 
 ### Listing short links
 
-Send a LIST request to the vhl.ink domain will respond with a list of all shortlinks maintained by the service.
+Sending an authenticated GET request to the vhl.ink domain root will respond with a list of all
+shortlinks maintained by the service.
 
 Authentication is required; pass the secret key in the `x-preshared-key` header.
 
 #### API Example
 
 ```bash
-curl --location --request LIST "https://vhl.ink" \
+curl --location --request GET "https://vhl.ink" \
     -H "x-preshared-key: ${SECRET_KEY}"
 ```
 
