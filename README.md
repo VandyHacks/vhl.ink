@@ -28,6 +28,46 @@ curl --location --request POST "https://vhl.ink" \
 ```
 passing https://github.com/VandyHacks to url, and gh to path will make https://vhl.ink/gh redirect to it (this is a real example).
 
+### Deleting short links
+
+Send DELETE request to the shortlink which should be deleted.
+
+Authentication is required; pass the secret key in the `x-preshared-key` header.
+
+This method is idempotent, being that successive attempts to delete an already-deleted shortlink
+will result in status 200 (OK).
+
+#### API Example
+
+```bash
+curl --location --request DELETE "https://vhl.ink/gh" \
+    -H "x-preshared-key: ${SECRET_KEY}"
+```
+
+Will delete the shortlink available at https://vhl.ink/gh
+
+### Listing short links
+
+Send a LIST request to the vhl.ink domain will respond with a list of all shortlinks maintained by the service.
+
+Authentication is required; pass the secret key in the `x-preshared-key` header.
+
+#### API Example
+
+```bash
+curl --location --request LIST "https://vhl.ink" \
+    -H "x-preshared-key: ${SECRET_KEY}"
+```
+
+Will return a JSON array of keys with one to three properties:
+
+```json
+  [{ name: "gh", expiration: null, metadata: "https://github.com/VandyHacks/vaken"}, ...]
+```
+(From https://developers.cloudflare.com/workers/runtime-apis/kv#more-detail)
+
+`expiration` and `metadata` are optional.
+
 ### Consuming
 
 this is the easy part, simply open the shortened link in your browser of choice! 
