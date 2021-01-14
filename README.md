@@ -4,7 +4,7 @@ Custom link shortener service using Cloudflare Workers + KV store on your domain
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/VandyHacks/vhl.ink)
 
-This API is easily consumed programmatically, such as through shell functions or slack slash commands, making it trivial to shorten links on the fly.
+This API is easily consumed programmatically, such as through [shell functions](https://github.com/aadibajpai/dotfiles/blob/f1c58f7f19778c0d591b0a199427c519835a9614/fish/.config/fish/functions/shorten.fish#L1-L7) or [slack slash commands](https://github.com/VandyHacks/nimbus), making it trivial to shorten links on the fly.
 
 Additionally, it is possible to make a simple form to create short links right from a webpage if that is more to your liking. See this [example](https://developers.cloudflare.com/workers/examples/read-post) for more info on that.
 
