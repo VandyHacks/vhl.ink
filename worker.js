@@ -77,12 +77,11 @@ async function handleRequest(request) {
 		const psk = request.headers.get('x-preshared-key');
 		if (psk === SECRET_KEY) {
 			const {keys} = (await LINKS.list());
-			let links = "";
-			for (index in keys) {
-				links += (keys[index]["name"]) + "\n";
-			}
-			
-			return new Response(links, { status: 200 });
+			let paths = "";
+			keys.forEach((element) => {
+				paths += (element["name"]) + "\n";
+			});
+			return new Response(paths, { status: 200 });
 		}
 
 		return new Response(html, {
