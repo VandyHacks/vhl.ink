@@ -71,15 +71,15 @@ async function handleDELETE(request) {
  */
 async function handleRequest(request) {
 	const url = new URL(request.url);
-	const path = url.pathname.split('/')[1];	
+	const path = url.pathname.split('/')[1];
 	if (!path) {
 		// Return list of available shortlinks if user supplies admin credentials.
 		const psk = request.headers.get('x-preshared-key');
 		if (psk === SECRET_KEY) {
-			const {keys} = (await LINKS.list());
+			const { keys } = await LINKS.list();
 			let paths = "";
 			keys.forEach((element) => {
-				paths += (element["name"]) + "\n";
+				paths += `${element["name"]}\n`;
 			});
 			return new Response(paths, { status: 200 });
 		}
