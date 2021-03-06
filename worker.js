@@ -39,6 +39,15 @@ async function handlePOST(request) {
 	if (!redirectURL || !path)
 		return new Response('`url` and `path` need to be set.', { status: 400 });
 
+	// validate redirectURL is a URL
+	try {
+		new URL(redirectURL);
+	} catch (e) {
+		if (e instanceof TypeError) 
+			return new Response('`url` needs to be a valid http url.', { status: 400 });
+		else throw e;
+	};
+
 	// will overwrite current path if it exists
 	await LINKS.put(path, redirectURL);
 	return new Response(`${redirectURL} available at ${shortener}${path}`, {
