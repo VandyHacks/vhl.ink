@@ -98,7 +98,7 @@ async function handleRequest(request) {
 			},
 		});
 	}
-	if(path == 'quack') {
+	if (path === 'quack') {
 		const resObject = {
 			text: 'You just got ducked 🦆',
 			response_type: 'in_channel',

@@ -16,6 +16,8 @@ jobs:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           secrets: |
               SECRET_KEY
+              SLACK_WEBHOOK_QUACK
         env:
             CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
             SECRET_KEY: ${{ secrets.SECRET_KEY }}
+            SLACK_WEBHOOK_QUACK: ${{ secrets.SLACK_WEBHOOK_QUACK }}
