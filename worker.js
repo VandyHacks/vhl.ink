@@ -68,7 +68,7 @@ async function handleDELETE(request) {
 	const path = url.pathname.split('/')[1];
 	if (!path) return new Response('Not found', { status: 404 });
 	await LINKS.delete(path);
-	return new Response('OK', { status: 200 });
+	return new Response(`${request.url} deleted!`, { status: 200 });
 }
 
 /**
