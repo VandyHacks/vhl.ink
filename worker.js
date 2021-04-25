@@ -112,7 +112,7 @@ async function handleRequest(request) {
 		});
 	}
 	const redirectURL = await LINKS.get(path);
-	if (redirectURL) return Response.redirect(redirectURL, 301);
+	if (redirectURL) return Response.redirect(redirectURL, 302);
 
 	return new Response('URL not found. Sad!', { status: 404 });
 }
