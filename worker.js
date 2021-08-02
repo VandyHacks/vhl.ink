@@ -7,7 +7,7 @@ addEventListener('fetch', event => {
 		case 'DELETE':
 			return event.respondWith(handleDELETE(request));
 		default:
-			return event.respondWith(handleRequest(request));
+			return event.respondWith(handleRequest(request, event));
 	}
 });
 
@@ -78,7 +78,7 @@ async function handleDELETE(request) {
  * shortlinks registered with the service.
  * @param {Request} request
  */
-async function handleRequest(request) {
+async function handleRequest(request, event) {
 	const url = new URL(request.url);
 	const path = url.pathname.split('/')[1];
 	if (!path) {
@@ -111,6 +111,14 @@ async function handleRequest(request) {
 			headers: { 'Content-Type': 'application/json' },
 		});
 	}
+
+	const analyticsReq = {
+		method: 'POST',
+		body: JSON.stringify({ 'path': path }),
+		headers: { 'Content-Type': 'application/json' },
+	};
+	event.waitUntil(fetch(ANALYTICS_URL, analyticsReq));
+
 	const redirectURL = await LINKS.get(path);
 	if (redirectURL) return Response.redirect(redirectURL, 302);
 
