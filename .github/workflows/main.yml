@@ -20,4 +20,5 @@ jobs:
         env:
             CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
             SECRET_KEY: ${{ secrets.SECRET_KEY }}
+            ANALYTICS_URL: ${{ secrets.ANALYTICS_URL }}
             SLACK_WEBHOOK_QUACK: ${{ secrets.SLACK_WEBHOOK_QUACK }}
